@@ -49,11 +49,10 @@ class Bus:
 
     def query_api(self, timeCount):
         #queries the api and grabs the necessary data
-        #currently data is quieried in full with queryFullData() function
 
         if self.recording == True:
             if self.timeQuery != timeCount:
-                link='https://api.511.org/transit/VehicleMonitoring?api_key=69c337cc-f428-4089-9996-48fb1f9492eb&agency=SF&Format=json&vehicleID='+str(self.vID)
+                link='https://api.511.org/transit/VehicleMonitoring?api_key=[api-key]&agency=SF&Format=json&vehicleID='+str(self.vID)
                 with urllib.request.urlopen(link) as url:
                     data = json.loads(url.read().decode('utf-8-sig'))
 
@@ -131,7 +130,7 @@ class Bus:
 
 def getVehicleIDsFromStop(stopCode):
     #returns a list of the vehicle codes that are being live tracked for the given stop code
-    link='https://api.511.org/transit/StopMonitoring?api_key=69c337cc-f428-4089-9996-48fb1f9492eb&agency=SF&stopCode='+str(stopCode)+'&Format=json'
+    link='https://api.511.org/transit/StopMonitoring?api_key=[api-key]&agency=SF&stopCode='+str(stopCode)+'&Format=json'
     with urllib.request.urlopen(link) as url:
         data = json.loads(url.read().decode('utf-8-sig'))
 
@@ -165,7 +164,7 @@ def bus_ID_list(bus_list):
     return id_list
 
 def queryFullData():
-    link='https://api.511.org/transit/VehicleMonitoring?api_key=69c337cc-f428-4089-9996-48fb1f9492eb&agency=SF&Format=json'
+    link='https://api.511.org/transit/VehicleMonitoring?api_key=[api-key]&agency=SF&Format=json'
     with urllib.request.urlopen(link) as url:
         data = json.loads(url.read().decode('utf-8-sig'))
 
